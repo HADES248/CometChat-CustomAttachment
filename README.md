@@ -1,56 +1,74 @@
-# CometChat React Integration Guide
+# CometChat React Custom Attachment Integration Guide
 
-This README provides a step-by-step guide to integrating CometChat into your React application using the CometChat UI Kit (Conversation + Message View).
+## Before
 
-## Prerequisites
+![Chat UI Screenshot](https://www.cometchat.com/docs/assets/images/message_composer_default_attachment_options_web_screens-c569f237c006c80562e098b92692e7a4.png)  
+*Alt text: Screenshot of a working CometChat-powered React app with default attachments and active chat visible*
 
-Before using this repository, follow the steps below:
+## After
+![Chat UI Screenshot](https://www.cometchat.com/docs/assets/images/message_composer_custom_attachment_options_web_screens-104035717491a170e498d72a5a5591a2.png)
+*Alt text: Screenshot of a working CometChat-powered React app with custom attachments and active chat visible*
 
-1. **Create a CometChat Account**
-   Sign up at (https://app.cometchat.com/signup)
+---
 
-2. **Create a New App**
-   After signing in, create a new app from your CometChat dashboard.
+## Introduction
 
-3. **Download This Code**
-   Clone or download the repository that contains the CometChat UI Kit (Conversation + Message View).
+This guide helps you add **custom attachment options** (like file upload, location sharing, etc.) to the **CometChat Message Composer** using the React UI Kit.
 
-4. **Install Dependencies**
-   Navigate to the project directory and install dependencies:
+> Prerequisite: You must have CometChat initialized in your app. If not, refer to the [CometChat Initialization Docs](https://www.cometchat.com/docs/ui-kit/react/react-conversation)
 
-5. **Get Credentials**
-   From the **Home** tab in your CometChat dashboard, copy the following:
+---
 
-   * App ID
-   * Region
-   * Auth Key
+## Step 1: Refer to CometChat Initialization Docs
 
-6. **Initialize UI Kit**
-   Open `src/CometChat-init/CometChat-init.tsx` and paste your credentials:
+Before integrating custom features, ensure CometChat is properly initialized using your:
 
-7. **Authenticate the User**
-   Use CometChat's authentication methods to log in a user. You can use demo users or create your own.
+- `APP_ID`
+- `REGION`
+- `AUTH_KEY`
 
-8. **Create Users**
-   You can create users using CometChat Dashboard or via their SDK.
+Refer to the [CometChat Initialization Guide](https://github.com/HADES248/CometChatReact-UI-Kit/edit/master/README.md) for more details.
 
-9. **Demo Users**
-   Use the preconfigured demo users to test the chat functionalities.
+---
 
-10. **Build the Chat Experience**
-    Integrate the UI components to stitch the full chat experience.
+## Step 2: Check React UI Kit Documentation
 
-11. **Stitch the Components**
-    Combine conversation list and message view components into your app.
+Navigate to the official [CometChat React UI Kit documentation](https://www.cometchat.com/docs/ui-kit/react/message-composer).
 
-12. **Run the App**
-    Start the development server:
+In the **Message Composer** section, locate the `AttachmentOptions` prop. This prop accepts a function that allows you to render one or more custom attachment buttons within the composer.
 
-13. **Customize the Theme**
-    Modify fonts, colors, and other UI settings to match your brand.
+---
 
-# Notes
+## Step 3: Create a Custom Attachment Function
 
-* Make sure you are connected to the internet while using CometChat services.
-* Refer to [CometChat Documentation](https://www.cometchat.com/docs/) for advanced configurations and custom features.
+In the file where you render the message composer, define a function that returns your custom attachment actions (e.g., icons for file upload, location sharing).
 
+Each action should have a title, ID, icon, and a handler for what to do when clicked — like opening a file picker or sending a custom message with GPS coordinates.
+
+---
+
+## Step 4: Pass Custom Function to the Composer
+
+Pass the function you created to the `attachmentOptions` prop of the `CometChatMessageComposer` component. This enables the custom buttons in the composer UI.
+
+---
+
+## Final Result
+
+Your message composer now includes additional custom buttons that allow users to:
+
+- Upload and send files
+- Trigger any other custom interaction
+
+- [Custom Attachment Code](https://github.com/HADES248/CometChat-CustomAttachment/blob/master/src/App.tsx)
+
+This improves user experience and allows for tailored messaging flows.
+
+---
+
+## Next Steps
+
+- Add Custom Icons or preview popups before sending content
+- Customize how custom messages appear in the conversation list and thread view
+
+---
